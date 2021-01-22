@@ -11,7 +11,7 @@ namespace _飞行棋_
         #region 游戏前全局变量的声明
         /*用静态字段模拟全局变量*/
         public static int[] Maps = new int[100];
-        //声明一个长度为100的一维数组
+        //表示玩家活动的范围
         public static int[] PlayerPos = new int[2];
         //用长度为2的数组表示两个玩家的位置
         public static string[] PlayerName = new string[2];
@@ -135,14 +135,14 @@ namespace _飞行棋_
             #region 画图
             if (PlayerPos[0] == PlayerPos[1] && PlayerPos[0] == i)//确保玩家在地图内
             {
-                str = "><";//玩家位置相同时
+                str = "><";//玩家初始位置
             }
-            else if (PlayerPos[0] == i)
+            else if (PlayerPos[0] == i)//玩家A
             {
                 //shift + 空格可以让A占一个格
                 str = "Ａ";
             }
-            else if (PlayerPos[1] == i)
+            else if (PlayerPos[1] == i)//玩家B
             {
                 str = "Ｂ";
             }
@@ -178,17 +178,14 @@ namespace _飞行棋_
         {
             Random r = new Random();
             int rnumber = r.Next(1, 7);//产生1-6的随机数
+            /*正常游戏*/
             Console.WriteLine("玩家{0}按任意键进行游戏", PlayerName[PlayerNumber]);
             Console.ReadKey(true);
             Console.WriteLine("玩家{0}掷出了{1}", PlayerName[PlayerNumber], rnumber);
-            
-            
-            
-            
-            
             Console.ReadKey(true);
             PlayerPos[PlayerNumber] += rnumber;
             Limit();
+            //玩家相遇
             Console.WriteLine("玩家{0}行动完了", PlayerName[PlayerNumber]);
             Console.ReadKey(true);
             if (PlayerPos[PlayerNumber] == PlayerPos[1 - PlayerNumber])
@@ -200,6 +197,7 @@ namespace _飞行棋_
             }//if
             else//踩到了关卡
             {
+                /*分别判断玩家遇到了什么关卡*/
                 switch (Maps[PlayerPos[PlayerNumber]])
                 {
                     case 0: Console.WriteLine("玩家{0}踩到了方块,安全到达", PlayerPos[PlayerNumber]);
@@ -282,6 +280,9 @@ namespace _飞行棋_
                 PlayerPos[1] = 99;
             }
         }
+        /// <summary>
+        /// 结束时的胜利图案
+        /// </summary>
         public static void Win()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -341,6 +342,7 @@ namespace _飞行棋_
             //当两个玩家都没有到最后一个格时,玩家不停的进行游戏
             while (PlayerPos[0] < 99 && PlayerPos[1] < 99)
             {
+                /*实现一轮暂停，之后恢复玩家行动*/
                 if (Flag[0] == false)
                 {
                     PlayGame(0);
@@ -349,7 +351,7 @@ namespace _飞行棋_
                 {
                     Flag[0] = false;
                 }
-                if (PlayerPos[0] >= 99)
+                if (PlayerPos[0] >= 99)//判断游戏是否结束
                 {
                     Console.WriteLine("玩家{0}无耻的赢了玩家{1},游戏结束", PlayerName[0], PlayerName[1]);
                     break;
@@ -372,6 +374,7 @@ namespace _飞行棋_
 
             Win();
             Console.ReadKey();
+
         }
     }
 }
