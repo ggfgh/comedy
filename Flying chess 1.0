@@ -371,7 +371,7 @@ namespace _飞行棋_
             }//while
 
             Win();
-
+            Console.ReadKey();
         }
     }
 }
