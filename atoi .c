@@ -8,32 +8,42 @@
 
 	printf("请输入代转换的字符串：");
 
-	do {
+	do
+	{
 		ch = getchar();//依次得到输入字符的ASCII
 
-		if (ch >= '0' && ch <= '9') {
+		if (ch >= '0' && ch <= '9') 
+		{
 			temp = 10 * num + (ch - '0');
-			if (temp > max_int || temp < min_int) {
+			if (temp > max_int || temp < min_int) 
+			{
 				is_overflow = 1;
 				break;
-			} else {
+			} else 
+			{
 				num = temp;
 			}
-		} else {
-			if (num) {
+		} else 
+		{
+			if (num)
+			{
 				break;//如果已输出数字,则退出循环
-
 			}
 		}
 
 	} while (ch != '\n');
 
-	if (is_overflow) {
+	if (is_overflow) 
+	{
 		printf("数值超出范围，结果未定义！\n");
-	} else {
-		if (!num) {
+	} 
+else 
+	{
+		if (!num)
+		{
 			printf("未找到任何数值！\n");
-		} else {
+		} else 
+		{
 			printf("结果是%lld\n", num);
 		}
 	}
