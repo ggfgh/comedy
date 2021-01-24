@@ -1,6 +1,6 @@
 	int ch ;
-	long long num = 0;
-	long long temp = 0;//临时变量，用于测试是否超出范围
+	long long int num = 0;
+	long long int temp = 0;//临时变量，用于测试是否超出范围
 	int is_overflow = 0;
 
 	const int max_int = (pow(2, sizeof(int) * 8) / 2 ) - 1;
@@ -23,7 +23,8 @@
 			{
 				num = temp;
 			}
-		} else 
+		}
+		else 
 		{
 			if (num)
 			{
@@ -37,15 +38,16 @@
 	{
 		printf("数值超出范围，结果未定义！\n");
 	} 
-else 
+        else 
 	{
-		if (!num)
+		if (!num && num != 0)
 		{
 			printf("未找到任何数值！\n");
-		} else 
+		} 
+		else 
 		{
 			printf("结果是%lld\n", num);
 		}
-	}
+	 }
 	return 0;
 }
