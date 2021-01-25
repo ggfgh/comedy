@@ -13,7 +13,7 @@ int main()
                 b = c;
         }
 
-        printf("两年后，总共有%ld只兔子！\n", c);
+        printf("两年后，总共有%ld对兔子！\n", c);
 
         return 0;
 }
