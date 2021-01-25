@@ -2,23 +2,21 @@
 
 int main()
 {
-char ch;
+int ch;
 printf("请输入明文：");
-do{
-	ch = getchar();
-	if((ch >= 'A' && ch <= 'X' )|| (ch >= 'a' && ch <= 'x'))
+while((ch = getchar()) != '\n')
+{
+	if(ch >= 'a' && ch <= 'z')
 	{
-		ch = ch + 3;
+		putchar ('a' + (ch - 'a' + 3) % 26);
+		continue;
 	}
-	else if(ch > 'X' && ch <= 'Z' )
+	if(ch >= 'A' && ch <= 'Z')
 	{
-		
-		ch = 'A' + ( 2 - ( 'Z' - ch));
+		putchar('A' + (ch - 'A' + 3) % 26);
+		continue;
 	}
-	else if (ch > 'x' && ch <= 'z')
-	{
-		ch = 'a' + ( 2 - ( 'z' - ch));
-	}
-	putchar(ch);
-} while (ch != '\n');
+	putchar(ch);//非字母输出 
+} 
+	return 0;
 }
